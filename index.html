@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RustMe - Dodep Client</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>RustMe</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Главная</a>
+                <a href="#mods" class="nav-link">Моды</a>
+                <a href="#features" class="nav-link">Особенности</a>
+                <a href="login.html" class="nav-link">Личный кабинет</a>
+                <a href="admin.html" class="nav-link" id="admin-link" style="display: none;">Админ-панель</a>
+            </div>
+            <div class="user-menu">
+                <span id="username">Гость</span>
+                <div class="role-badge" id="role-badge"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Dodep Client <span class="gradient-text">RustMe</span></h1>
+            <p class="hero-subtitle">Современный чит-клиент для Rust с передовыми функциями</p>
+            <div class="hero-buttons">
+                <a href="#mods" class="btn btn-primary">Выбрать мод</a>
+                <a href="login.html" class="btn btn-secondary">Войти в аккаунт</a>
+            </div>
+        </div>
+        <div class="hero-background">
+            <div class="particles" id="particles"></div>
+        </div>
+    </section>
+
+    <!-- Моды секция -->
+    <section class="mods-section" id="mods">
+        <div class="container">
+            <h2 class="section-title">Доступные <span class="gradient-text">Моды</span></h2>
+            <p class="section-subtitle">Выберите подходящий пакет функций для вашей игры</p>
+            
+            <div class="mods-container">
+                <!-- RustMe Basic -->
+                <div class="mod-card">
+                    <div class="mod-icon locked">
+                        <i class="fas fa-eye"></i>
+                        <div class="lock-overlay"><i class="fas fa-lock"></i></div>
+                    </div>
+                    <h3>RustMe Basic</h3>
+                    <p class="mod-description">Only ESP - базовая версия с ESP</p>
+                    <div class="mod-price">$99</div>
+                    <div class="mod-features">
+                        <span><i class="fas fa-check"></i> ESP игроков</span>
+                        <span><i class="fas fa-check"></i> ESP предметов</span>
+                        <span><i class="fas fa-times"></i> Читы не включены</span>
+                    </div>
+                    <button class="btn btn-buy" data-mod="basic">Купить сейчас</button>
+                </div>
+
+                <!-- RustMe Full -->
+                <div class="mod-card featured">
+                    <div class="featured-badge">VIP</div>
+                    <div class="mod-icon locked">
+                        <i class="fas fa-crown"></i>
+                        <div class="lock-overlay"><i class="fas fa-lock"></i></div>
+                    </div>
+                    <h3>RustMe Full</h3>
+                    <p class="mod-description">Полный пакет всех функций</p>
+                    <div class="mod-price">$199</div>
+                    <div class="mod-features">
+                        <span><i class="fas fa-check"></i> Все функции ESP</span>
+                        <span><i class="fas fa-check"></i> Аимбот</span>
+                        <span><i class="fas fa-check"></i> Читы движения</span>
+                    </div>
+                    <button class="btn btn-buy" data-mod="full">Купить сейчас</button>
+                </div>
+
+                <!-- RustMe Legit -->
+                <div class="mod-card">
+                    <div class="mod-icon locked">
+                        <i class="fas fa-user-secret"></i>
+                        <div class="lock-overlay"><i class="fas fa-lock"></i></div>
+                    </div>
+                    <h3>RustMe Legit</h3>
+                    <p class="mod-description">Only chams Bind H</p>
+                    <div class="mod-price">$79</div>
+                    <div class="mod-features">
+                        <span><i class="fas fa-check"></i> Чамс</span>
+                        <span><i class="fas fa-check"></i> Привязка к H</span>
+                        <span><i class="fas fa-times"></i> Без ESP</span>
+                    </div>
+                    <button class="btn btn-buy" data-mod="legit">Купить сейчас</button>
+                </div>
+
+                <!-- RustMe Lite -->
+                <div class="mod-card">
+                    <div class="mod-icon locked">
+                        <i class="fas fa-bullseye"></i>
+                        <div class="lock-overlay"><i class="fas fa-lock"></i></div>
+                    </div>
+                    <h3>RustMe Lite</h3>
+                    <p class="mod-description">Norecoil - без отдачи</p>
+                    <div class="mod-price">$89</div>
+                    <div class="mod-features">
+                        <span><i class="fas fa-check"></i> Нет отдачи</span>
+                        <span><i class="fas fa-check"></i> Базовая стабилизация</span>
+                        <span><i class="fas fa-times"></i> Без ESP</span>
+                    </div>
+                    <button class="btn btn-buy" data-mod="lite">Купить сейчас</button>
+                </div>
+
+                <!-- Tester -->
+                <div class="mod-card">
+                    <div class="mod-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>Tester</h3>
+                    <p class="mod-description">Только для тестеров</p>
+                    <div class="mod-price">Бесплатно</div>
+                    <div class="mod-features">
+                        <span><i class="fas fa-check"></i> Доступ по приглашению</span>
+                        <span><i class="fas fa-check"></i> Ограниченный функционал</span>
+                        <span><i class="fas fa-check"></i> Для тестирования</span>
+                    </div>
+                    <button class="btn btn-buy disabled" disabled>По приглашению</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Особенности -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Особенности <span class="gradient-text">Клиента</span></h2>
+            
+            <div class="swiper features-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide feature-slide">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Высокая производительность</h3>
+                        <p>Оптимизированный код на Rust обеспечивает максимальный FPS</p>
+                    </div>
+                    <div class="swiper-slide feature-slide">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3>Безопасность</h3>
+                        <p>Защита от обнаружения и банов</p>
+                    </div>
+                    <div class="swiper-slide feature-slide">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>Автообновление</h3>
+                        <p>Клиент автоматически обновляется</p>
+                    </div>
+                    <div class="swiper-slide feature-slide">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Поддержка 24/7</h3>
+                        <p>Техническая поддержка в Telegram</p>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Поддержка -->
+    <section class="support-section">
+        <div class="container">
+            <div class="support-card">
+                <i class="fab fa-telegram support-icon"></i>
+                <h3>Техническая поддержка</h3>
+                <p>По всем вопросам обращайтесь в Telegram</p>
+                <a href="https://t.me/dadepbabki" class="btn btn-telegram" target="_blank">
+                    <i class="fab fa-telegram"></i> @dadepbabki
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>RustMe</span>
+                </div>
+                <p class="footer-copyright">© 2024 Dodep Client RustMe. Все права защищены.</p>
+                <div class="footer-links">
+                    <a href="#">Пользовательское соглашение</a>
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="https://t.me/dadepbabki" target="_blank">Поддержка</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

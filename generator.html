@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор ключей - RustMe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>RustMe Generator</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> На сайт</a>
+                <a href="admin.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Админ-панель</a>
+            </div>
+            <div class="user-menu">
+                <span id="gen-username"></span>
+                <div class="role-badge" id="gen-role-badge"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="generator-container">
+        <div class="container">
+            <h2 class="section-title">Генератор <span class="gradient-text">Ключей</span></h2>
+            
+            <div class="generator-card">
+                <div class="generator-form">
+                    <div class="form-group">
+                        <label for="key-type"><i class="fas fa-tag"></i> Тип ключа</label>
+                        <select id="key-type" class="form-select">
+                            <option value="Basic">RustMe Basic - Only ESP</option>
+                            <option value="Full">RustMe Full - VIP</option>
+                            <option value="Legit">RustMe Legit - Only chams Bind H</option>
+                            <option value="Lite">RustMe Lite - Norecoil</option>
+                            <option value="Tester">Tester - Only tester</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="key-duration"><i class="fas fa-clock"></i> Длительность</label>
+                        <select id="key-duration" class="form-select">
+                            <option value="1 день">1 день</option>
+                            <option value="3 дня">3 дня</option>
+                            <option value="1 неделя">1 неделя</option>
+                            <option value="1 месяц">1 месяц</option>
+                            <option value="навсегда">Навсегда</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="key-amount"><i class="fas fa-hashtag"></i> Количество ключей</label>
+                        <input type="number" id="key-amount" class="form-input" min="1" max="100" value="1">
+                    </div>
+                    
+                    <button id="generate-btn" class="btn btn-primary btn-generate">
+                        <i class="fas fa-key"></i> Сгенерировать ключи
+                    </button>
+                </div>
+                
+                <div class="generator-result" id="generator-result">
+                    <!-- Результаты будут здесь -->
+                </div>
+            </div>
+            
+            <div class="recent-keys">
+                <h3>Недавно сгенерированные ключи</h3>
+                <div id="recent-keys-list" class="keys-list">
+                    <!-- Список ключей -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/generator.js"></script>
+</body>
+</html>

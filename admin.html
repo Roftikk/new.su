@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - RustMe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>RustMe Admin</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> На сайт</a>
+                <a href="#dashboard" class="nav-link active"><i class="fas fa-tachometer-alt"></i> Дашборд</a>
+                <a href="#users" class="nav-link"><i class="fas fa-users"></i> Пользователи</a>
+                <a href="#keys" class="nav-link"><i class="fas fa-key"></i> Ключи</a>
+                <a href="generator.html" class="nav-link"><i class="fas fa-plus-circle"></i> Генератор</a>
+                <a href="profile.html" class="nav-link"><i class="fas fa-user"></i> Профиль</a>
+            </div>
+            <div class="user-menu">
+                <span id="admin-username"></span>
+                <button class="btn btn-logout" onclick="authManager.logout()">Выйти</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="admin-container">
+        <section id="dashboard" class="admin-section">
+            <h2 class="admin-title">Панель управления</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="total-users">0</h3>
+                        <p>Всего пользователей</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="total-keys">0</h3>
+                        <p>Всего ключей</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="active-subs">0</h3>
+                        <p>Активные подписки</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="pending-keys">0</h3>
+                        <p>Неиспользованные ключи</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="users" class="admin-section">
+            <h2 class="admin-title">Управление пользователями</h2>
+            
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Имя пользователя</th>
+                            <th>Роль</th>
+                            <th>Подписка</th>
+                            <th>Дата регистрации</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table">
+                        <!-- Данные будут загружены через JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="keys" class="admin-section">
+            <h2 class="admin-title">Управление ключами</h2>
+            
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Ключ</th>
+                            <th>Тип</th>
+                            <th>Длительность</th>
+                            <th>Создатель</th>
+                            <th>Статус</th>
+                            <th>Использован</th>
+                            <th>Дата создания</th>
+                        </tr>
+                    </thead>
+                    <tbody id="keys-table">
+                        <!-- Данные будут загружены через JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

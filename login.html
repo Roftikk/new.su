@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - RustMe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: var(--darker);
+        }
+        
+        .auth-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .auth-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .auth-tab.active {
+            color: var(--light);
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: -2px;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .btn-auth {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        .auth-message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.875rem;
+            display: none;
+        }
+        
+        .auth-message.success {
+            background: rgba(0, 200, 83, 0.2);
+            color: #00c853;
+            display: block;
+        }
+        
+        .auth-message.error {
+            background: rgba(255, 82, 82, 0.2);
+            color: #ff5252;
+            display: block;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2 class="auth-title gradient-text">RustMe</h2>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Вход</div>
+                <div class="auth-tab" data-tab="register">Регистрация</div>
+            </div>
+            
+            <!-- Форма входа -->
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="login-username">Имя пользователя</label>
+                    <input type="text" id="login-username" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password">Пароль</label>
+                    <input type="password" id="login-password" class="form-input" required>
+                </div>
+                
+                <div id="login-message" class="auth-message"></div>
+                
+                <button type="submit" class="btn btn-primary btn-auth">
+                    <i class="fas fa-sign-in-alt"></i> Войти
+                </button>
+                
+                <div class="auth-footer">
+                    <p>Демо доступ: RoftekDEV / dimok2016</p>
+                    <a href="index.html"><i class="fas fa-arrow-left"></i> Вернуться на сайт</a>
+                </div>
+            </form>
+            
+            <!-- Форма регистрации -->
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="register-username">Имя пользователя</label>
+                    <input type="text" id="register-username" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-password">Пароль</label>
+                    <input type="password" id="register-password" class="form-input" required minlength="6">
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-confirm">Подтвердите пароль</label>
+                    <input type="password" id="register-confirm" class="form-input" required minlength="6">
+                </div>
+                
+                <div id="register-message" class="auth-message"></div>
+                
+                <button type="submit" class="btn btn-primary btn-auth">
+                    <i class="fas fa-user-plus"></i> Зарегистрироваться
+                </button>
+                
+                <div class="auth-footer">
+                    <a href="#" class="switch-to-login"><i class="fas fa-sign-in-alt"></i> Уже есть аккаунт?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        class AuthPage {
+            constructor() {
+                this.authManager = authManager;
+                this.init();
+            }
+            
+            init() {
+                this.setupTabs();
+                this.setupForms();
+                
+                // Проверяем редиректы
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirect = urlParams.get('redirect');
+                const mod = urlParams.get('mod');
+                
+                if (redirect === 'purchase' && mod) {
+                    localStorage.setItem('pending_purchase', mod);
+                }
+                
+                // Проверяем если уже авторизован
+                const currentUser = database.getCurrentUser();
+                if (currentUser) {
+                    this.redirectUser(currentUser);
+                }
+            }
+            
+            setupTabs() {
+                const tabs = document.querySelectorAll('.auth-tab');
+                const forms = document.querySelectorAll('.auth-form');
+                
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const tabId = tab.dataset.tab;
+                        
+                        // Обновляем активные табы
+                        tabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        
+                        // Показываем активную форму
+                        forms.forEach(form => {
+                            form.classList.remove('active');
+                            if (form.id === `${tabId}-form`) {
+                                form.classList.add('active');
+                            }
+                        });
+                        
+                        // Очищаем сообщения
+                        this.clearMessages();
+                    });
+                });
+            }
+            
+            setupForms() {
+                // Форма входа
+                document.getElementById('login-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('login-username').value;
+                    const password = document.getElementById('login-password').value;
+                    const messageEl = document.getElementById('login-message');
+                    
+                    const result = await this.authManager.login(username, password);
+                    
+                    if (result.success) {
+                        messageEl.textContent = 'Успешный вход! Перенаправление...';
+                        messageEl.className = 'auth-message success';
+                        
+                        setTimeout(() => {
+                            this.redirectUser(result.user);
+                        }, 1000);
+                    } else {
+                        messageEl.textContent = result.error || 'Ошибка входа';
+                        messageEl.className = 'auth-message error';
+                    }
+                });
+                
+                // Форма регистрации
+                document.getElementById('register-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('register-username').value;
+                    const email = document.getElementById('register-email').value;
+                    const password = document.getElementById('register-password').value;
+                    const confirm = document.getElementById('register-confirm').value;
+                    const messageEl = document.getElementById('register-message');
+                    
+                    // Проверка паролей
+                    if (password !== confirm) {
+                        messageEl.textContent = 'Пароли не совпадают';
+                        messageEl.className = 'auth-message error';
+                        return;
+                    }
+                    
+                    if (password.length < 6) {
+                        messageEl.textContent = 'Пароль должен быть не менее 6 символов';
+                        messageEl.className = 'auth-message error';
+                        return;
+                    }
+                    
+                    const result = await this.authManager.register(username, password, email);
+                    
+                    if (result.success) {
+                        messageEl.textContent = 'Регистрация успешна! Вход...';
+                        messageEl.className = 'auth-message success';
+                        
+                        setTimeout(() => {
+                            this.redirectUser(result.user);
+                        }, 1500);
+                    } else {
+                        messageEl.textContent = result.error || 'Ошибка регистрации';
+                        messageEl.className = 'auth-message error';
+                    }
+                });
+                
+                // Ссылка "Уже есть аккаунт?"
+                document.querySelector('.switch-to-login').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector('.auth-tab[data-tab="login"]').click();
+                });
+            }
+            
+            clearMessages() {
+                document.querySelectorAll('.auth-message').forEach(el => {
+                    el.textContent = '';
+                    el.className = 'auth-message';
+                });
+            }
+            
+            redirectUser(user) {
+                const pendingPurchase = localStorage.getItem('pending_purchase');
+                
+                if (pendingPurchase) {
+                    localStorage.removeItem('pending_purchase');
+                    window.location.href = `purchase.html?mod=${pendingPurchase}`;
+                } else if (user.role === 'Developer') {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'profile.html';
+                }
+            }
+        }
+        
+        new AuthPage();
+    </script>
+</body>
+</html>
